@@ -1,9 +1,14 @@
 .container{
-    width:50%; 
-    box-sizing: border-box;
     padding:0.2em;
 }
 
+.container.grid{
+    width:50%;
+}
+
+.container.list{
+    width:100%;
+}
 .video{
     cursor: pointer;
     display:flex;
@@ -16,6 +21,7 @@
 .video:hover{
    transform: scale(1.02);
 }
+
 .thumbnail{
     width:40%;
     height: 100%;
