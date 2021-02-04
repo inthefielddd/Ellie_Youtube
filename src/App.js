@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import SearchHeader from "./components/search_header/seachHeader";
 import VideoList from "./components/video_list/videoList";
 import styles from "./App.module.css";
@@ -20,21 +20,26 @@ function App({ youtube }) {
 
     //네트워크 통신로직
     //search api
-    const search = (query) => {
-        setSeletedVideo(null);
-        youtube
-            .search(query) //
-            .then((videos) => {
-                setVideos(videos);
-            });
-    };
+    //usecallback을써서 한번만 불러오게한다
+    //but 메모리에 무리가 갈 수 있다. 필요할때만 사용한다
+    const search = useCallback(
+        (query) => {
+            setSeletedVideo(null);
+            youtube
+                .search(query) //
+                .then((videos) => {
+                    setVideos(videos);
+                });
+        },
+        [youtube]
+    );
 
     //videos를 가지고올 api
     useEffect(() => {
         youtube
             .mostPopular() //
             .then((videos) => setVideos(videos));
-    }, []);
+    }, [youtube]);
 
     return (
         <div className={styles.app}>

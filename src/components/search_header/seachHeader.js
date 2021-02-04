@@ -1,7 +1,7 @@
 import styles from "./searchHeader.module.css";
-import React, { useRef } from "react";
+import React, { memo, useRef } from "react";
 
-const SeachHeader = ({ onSearch }) => {
+const SeachHeader = memo(({ onSearch }) => {
     const inputRef = useRef();
     const handleSearch = () => {
         const value = inputRef.current.value;
@@ -21,6 +21,7 @@ const SeachHeader = ({ onSearch }) => {
             handleSearch();
         }
     };
+    console.log("Header!");
     return (
         <header className={styles.header}>
             <div className={styles.logo}>
@@ -34,6 +35,6 @@ const SeachHeader = ({ onSearch }) => {
             </button>
         </header>
     );
-};
+});
 
 export default SeachHeader;
